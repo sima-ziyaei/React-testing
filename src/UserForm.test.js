@@ -31,11 +31,11 @@ test('it calls onUserAdd when the form is submitted', () => {
 
   // Simulate typing in a name
   user.click(nameInput);
-  user.keyboard('jane');
+  user.keyboard('sima');
 
   // Simulate typing in an email
   user.click(emailInput);
-  user.keyboard('jane@jane.com');
+  user.keyboard('sima@sima.com');
 
   // Find the button
   const button = screen.getByRole('button');
@@ -45,5 +45,30 @@ test('it calls onUserAdd when the form is submitted', () => {
 
   // Assertion to make sure 'onUserAdd' gets called with email/name
   expect(mock).toHaveBeenCalled();
-  expect(mock).toHaveBeenCalledWith({ name: 'jane', email: 'jane@jane.com' });
+  expect(mock).toHaveBeenCalledWith({ name: 'sima', email: 'sima@sima.com' });
 });
+
+test('empties the two inputs when form is submitted', ()=>{
+  render(<UserForm onUserAdd={()=>{}} />);
+
+  const nameInput = screen.getByRole('textbox', {
+    name: /name/i,
+  });
+  const emailInput = screen.getByRole('textbox', {
+    name: /email/i,
+  });
+
+  user.click(nameInput);
+  user.keyboard('sima');
+
+  user.click(emailInput);
+  user.keyboard('sima@sima.com');
+
+  const button = screen.getByRole('button');
+
+  user.click(button);
+
+  expect(nameInput).toHaveValue('');
+  expect(emailInput).toHaveValue('');
+
+})

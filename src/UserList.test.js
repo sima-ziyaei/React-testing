@@ -3,8 +3,8 @@ import UserList from './UserList';
 
 function renderComponent() {
   const users = [
-    { name: 'jane', email: 'jane@jane.com' },
-    { name: 'sam', email: 'sam@sam.com' },
+    { name: 'sima', email: 'sima@sima.com' },
+    { name: 'ali', email: 'ali@ali.com' },
   ];
   render(<UserList users={users} />);
 
